@@ -1,4 +1,4 @@
-import { reqeustOrderlist } from "../axios";
+import { reqeustOrderlist, reqeustDelOrder } from "../axios";
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 const OrderHistory = () => {
   const [res, setRes] = useState();
+  const [orderId, setOrderId] = useState();
   const navigate = useNavigate();
 
   const updateUi = useCallback(
@@ -21,7 +22,20 @@ const OrderHistory = () => {
       }
     }
   );
-  console.log(res)
+
+  const delOrder = 
+  async (e) => {
+    e?.preventDefault();
+    
+    try {
+      await reqeustDelOrder(orderId);
+    } catch (error) {
+      alert("실패");
+      console.log(error)
+    }
+  };
+
+  
 
   useEffect(() => {
     updateUi();
@@ -41,6 +55,13 @@ const OrderHistory = () => {
         <p>title : {item.title}</p>
         <p>price : {item.price}</p>
         <p>orderNum : {item.orderNum}</p>
+
+        <div>
+          <form onSubmit={delOrder} >
+              <button>주문 취소</button>
+          </form>
+        </div>
+
       </li>
     );
   })}

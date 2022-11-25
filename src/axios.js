@@ -82,12 +82,17 @@ export const reqeustAddCart = async (productId) => {
   return response;
 };
 
+export const reqeustDelCart = async (productId) => {
+  const response = await instance.get("/api/cart/delete/"+productId);
+  return response;
+};
+
 export const reqeustOrder = async (orderRequestDto) => {
   const response = await instance.post("/api/product/order", orderRequestDto);
   return response;
 };
 
-export const reqeustDelCart = async (productId) => {
-  const response = await instance.get("/api/cart/delete/"+productId);
+export const reqeustDelOrder = async (productId) => {
+  const response = await instance.get("/api/product/"+productId);
   return response;
 };
