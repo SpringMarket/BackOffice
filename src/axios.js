@@ -76,3 +76,18 @@ export const reqeustRankingBoard5 = async () => {
   const response = await instance.get("/api/rank/list/5");
   return response;
 };
+
+export const reqeustAddCart = async (productId) => {
+  const response = await instance.get("/api/cart/add/"+productId);
+  return response;
+};
+
+export const reqeustOrder = async (orderRequestDto) => {
+  const response = await instance.post("/api/product/order", orderRequestDto);
+  return response;
+};
+
+export const reqeustDelCart = async (productId) => {
+  const response = await instance.get("/api/cart/delete/"+productId);
+  return response;
+};

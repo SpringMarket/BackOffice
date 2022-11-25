@@ -33,7 +33,12 @@ const Join = () => {
 
   return (
     <div>
-      회원가입페이지
+
+<Link to={"/"}>Return</Link>
+      <h2>
+        Sign Up
+      </h2>
+
       <form onSubmit={signUp}>
         <div>
           <label>이메일</label>

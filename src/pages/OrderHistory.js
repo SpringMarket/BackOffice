@@ -1,6 +1,8 @@
 import { reqeustOrderlist } from "../axios";
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const OrderHistory = () => {
   const [res, setRes] = useState();
@@ -26,9 +28,11 @@ const OrderHistory = () => {
   }, []);
 
   return <div>
-    <div>
-      주문 내역
-    </div>
+
+<Link to={"/"}>Return</Link>
+      <h2>
+        주문 내역
+      </h2>
 
     <ul className="card_list">
   {res?.content.map((item, idx) => {

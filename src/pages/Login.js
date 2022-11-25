@@ -34,7 +34,12 @@ const Login = () => {
 
   return (
     <div className="loginContainer">
-      로그인페이지
+
+  <Link to={"/"}>Return</Link>
+      <h2>
+        Login
+      </h2>
+      
       
       <form onSubmit={login}>
         <div>

@@ -13,7 +13,6 @@ const Main = () => {
     async (e) => {
       e?.preventDefault();
       const response = await reqeustRankingBoard1();
-      console.log(response)
       setRes(response.data.check.data);
     }
   );
@@ -51,8 +50,8 @@ const Main = () => {
   )
 
   const updateUi = useCallback(
-    async (e) => {
-      e?.preventDefault();
+    async (f) => {
+      f?.preventDefault();
 
       const response = await reqeustDashboard(filter);
 
@@ -70,8 +69,6 @@ const Main = () => {
     updateUi();
   }, []);
 
-  console.log(res)
-  console.log(filter)
 
   return (
     <div className="mainContainer">
@@ -81,6 +78,12 @@ const Main = () => {
         Spring Market Ranking Board
       </h2>
 
+      <div>
+        <Link to={"/mycart"} >장바구니</Link>
+        <Link to={"/myorder"}>주문내역</Link>
+        <Link to={"/login"}>로그인페이지</Link>
+      </div>
+      
       <div className="rankingButton">
       <div>
       <form onSubmit={rank1}>
@@ -115,6 +118,8 @@ const Main = () => {
 
       {/* 필터링 조회 */}
 
+      <div>
+
       <form onSubmit={updateUi}>
 
       <div>
@@ -122,7 +127,6 @@ const Main = () => {
         <select
           onChange={(e) => {
             const { value } = e.target;
-
             setFilter({ ...filter, category: value });
           }}
         >
@@ -193,9 +197,9 @@ const Main = () => {
           <option value={"40대 이상"}>40대 이상</option>
         </select>
       </div>
-
-        <button>갱신</button>
+        <button>조회</button>
       </form>
+      </div>
 
       {/* 필터링 조회 */}
 
