@@ -2,6 +2,7 @@ import { reqeustOrderlist, reqeustDelOrder } from "../axios";
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./mypage.css";
 
 
 const OrderHistory = () => {
@@ -12,23 +13,18 @@ const OrderHistory = () => {
   const updateUi = useCallback(
     async (e) => {
       e?.preventDefault();
-
-      try {
         const response = await reqeustOrderlist();
         setRes(response.data.check.data);
-      } catch (error) {
-        alert("주문 내역이 없습니다.");
-        navigate("/");
-      }
     }
   );
 
-  const delOrder = 
-  async (e) => {
-    e?.preventDefault();
-    
+  const delOrder = async (id) => {
     try {
-      await reqeustDelOrder(orderId);
+      console.log(id)
+      await reqeustDelOrder(id);
+      alert("주문 취소");
+      window.location.reload();
+      
     } catch (error) {
       alert("실패");
       console.log(error)
@@ -41,25 +37,35 @@ const OrderHistory = () => {
     updateUi();
   }, []);
 
-  return <div>
+  return <div className="wrap">
 
-<Link to={"/"}>Return</Link>
-      <h2>
-        주문 내역
-      </h2>
+    <Link style={{ textDecoration: "none", color: "black" }}
+      to={"/"}>Return</Link>
+
+      <h3 className="title"> 주문 내역 </h3>
 
     <ul className="card_list">
   {res?.content.map((item, idx) => {
     return (
       <li key={idx} className="card">
-        <p>title : {item.title}</p>
-        <p>price : {item.price}</p>
-        <p>orderNum : {item.orderNum}</p>
+
+        <div className="productTitle">
+              <Link
+                to={"/detail"}
+                state={item.productId}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                <p>{item.title}</p>
+              </Link>
+              </div>
+
+        <p>결제금액 : {item.price}</p>
+        <p>주문일 : {item.orderTime}</p>
+        <p>주문수량 : {item.orderNum}</p>
+        <p>상태 : {item.orderStatus}</p>
 
         <div>
-          <form onSubmit={delOrder} >
-              <button>주문 취소</button>
-          </form>
+              <button className="delCartOrder" onClick={() => delOrder(item.orderId)}>주문 취소</button>
         </div>
 
       </li>

@@ -33,28 +33,35 @@ const Login = () => {
   };
 
   return (
-    <div className="loginContainer">
 
-  <Link to={"/"}>Return</Link>
+  <div className="wrap">
+
+
       <h2>
-        Login
+      <Link style={{ textDecoration: "none", color: "black" }}
+      to={"/"}>Spring Market</Link>
       </h2>
       
-      
-      <form onSubmit={login}>
+      <div className="loginContainer">
+        <form onSubmit={login}>
         <div>
-          <label>이메일</label>
-          <input type={"email"} name={"email"} onChange={setValue} />
+          <label className="label">Email : </label>
+          <input className="input_id"
+          type={"email"} name={"email"} onChange={setValue} />
         </div>
         <div>
-          <label>비밀번호</label>
-          <input type={"password"} name={"password"} onChange={setValue} />
+          <label className="label">Password : </label>
+          <input className="input_pw"
+          type={"password"} name={"password"} onChange={setValue} />
         </div>
-        <button>로그인</button>
+        <button className="button">로그인</button>
       </form>
-      <button>
-      <Link to={"/join"}>회원가입</Link>
+      <button className="button">
+      <Link style={{ textDecoration: "none", color: "black" }}
+      to={"/join"}>회원가입</Link>
       </button>
+      </div>
+      
     </div>
   );
 };

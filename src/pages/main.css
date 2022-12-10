@@ -5,7 +5,9 @@
 }
 
 .card {
-  border: 1px solid black;
+  /* border: 1px solid black;
+   */
+   border: 0px;
   margin-bottom: 15px;
 }
 
@@ -30,4 +32,13 @@
 .logo {
   /* background-color:#70d30d; */
   text-align: center;
+}
+
+.return {
+  width: 5%;
+  margin-left: auto; 
+  margin-right: auto;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  margin-bottom: 2%;
 }

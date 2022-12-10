@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { requestSignup } from "../axios";
+import "./login.css";
 
 const INIT = {
   email: "",
@@ -11,6 +12,8 @@ const INIT = {
 const Join = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(INIT);
+
+  console.log(userInfo)
 
   const setValue = (e) => {
     const { name, value } = e.target;
@@ -25,38 +28,54 @@ const Join = () => {
       await requestSignup(userInfo);
 
       alert("회원가입에 성공하였습니다.");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       alert("회원가입에 실패하였습니다.");
     }
   };
 
   return (
-    <div>
+    <div className="wrap">
 
-<Link to={"/"}>Return</Link>
       <h2>
-        Sign Up
+      <Link style={{ textDecoration: "none", color: "black" }}
+      to={"/"}>Spring Market</Link>
       </h2>
-
+      <div className="loginContainer">
       <form onSubmit={signUp}>
         <div>
-          <label>이메일</label>
-          <input type={"email"} name={"email"} onChange={setValue} />
+          <label className="label">Email : </label>
+          <input className="input_id"
+          type={"email"} name={"email"} onChange={setValue} />
         </div>
         <div>
-          <label>비밀번호</label>
-          <input type={"password"} name={"password"} onChange={setValue} />
+          <label className="label">Password : </label>
+          <input className="input_pw"
+          type={"password"} name={"password"} onChange={setValue} />
         </div>
+
+
         <div>
-          <label>나이</label>
-          <input name={"age"} onChange={setValue} />
+        <label className="label">Age : </label>
+          <select className="input_pw"
+                  name={"age"} onChange={setValue}
+                >
+                  <option value={"10대"}>10대</option>
+                  <option value={"20대"}>20대</option>
+                  <option value={"30대"}>30대</option>
+                  <option value={"40대 이상"}>40대 이상</option>
+                </select>
+
         </div>
-        <button>회원가입</button>
+
+        <button className="button">회원가입</button>
       </form>
-      <button>
-        <Link to={"/login"}>로그인</Link>
+      <button className="button">
+        <Link style={{ textDecoration: "none", color: "black" }}
+        to={"/login"}>로그인</Link>
       </button>
+      </div>
+
     </div>
   );
 };
